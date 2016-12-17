@@ -8,6 +8,11 @@
 from __future__ import print_function
 import sys
 import os
+import time
+start_time = time.time()
+
+
+
 
 # 添加 环境变量 SPARK的 跟目录
 SPARK_HOME = '/home/jdwang/spark-2.0.0-bin-hadoop2.7/'
@@ -40,4 +45,8 @@ if __name__ == '__main__':
     svr = svm.SVC()
     clf = GridSearchCV(sc, svr, parameters)
     clf.fit(iris.data, iris.target)
+    print(clf.best_params_)
     print(clf.predict(iris.data))
+
+end_time = time.time()
+print('running time is %ds'%(end_time-start_time))
